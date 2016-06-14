@@ -65,8 +65,8 @@ all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 endif
 
 OBJECTS := \
+	$(OBJDIR)/lex.yy.o \
 	$(OBJDIR)/main.o \
-	$(OBJDIR)/tokens.o \
 	$(OBJDIR)/y.tab.o \
 
 RESOURCES := \
@@ -125,10 +125,10 @@ $(GCH): $(PCH)
 	$(SILENT) $(CC) -x c-header $(ALL_CFLAGS) -o "$@" -MF "$(@:%.gch=%.d)" -c "$<"
 endif
 
-$(OBJDIR)/main.o: ../main.c
+$(OBJDIR)/lex.yy.o: ../lex.yy.c
 	@echo $(notdir $<)
 	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/tokens.o: ../tokens.c
+$(OBJDIR)/main.o: ../main.c
 	@echo $(notdir $<)
 	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/y.tab.o: ../y.tab.c

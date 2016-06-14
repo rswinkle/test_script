@@ -2,17 +2,16 @@
 solution "Simple_Script"
 	configurations { "Debug", "Release" }
 	location "build"
+	kind "ConsoleApp"
+	language "C"
 
 	-- A project defines one build target
 	project "simple_script"
-		location "build"
-		kind "ConsoleApp"
-		language "C"
 		files
 		{
 			"main.c",
-			--"lex.yy.c",
-			"tokens.c",
+			"lex.yy.c",
+			--"tokens.c",
 			"y.tab.c"
 		}
 		--excludes { }
