@@ -11,26 +11,35 @@ ifndef verbose
 endif
 
 ifeq ($(config),debug)
-  simple_script_config = debug
+  test_script_config = debug
+  test_script2_config = debug
 endif
 ifeq ($(config),release)
-  simple_script_config = release
+  test_script_config = release
+  test_script2_config = release
 endif
 
-PROJECTS := simple_script
+PROJECTS := test_script test_script2
 
 .PHONY: all clean help $(PROJECTS) 
 
 all: $(PROJECTS)
 
-simple_script:
-ifneq (,$(simple_script_config))
-	@echo "==== Building simple_script ($(simple_script_config)) ===="
-	@${MAKE} --no-print-directory -C . -f simple_script.make config=$(simple_script_config)
+test_script:
+ifneq (,$(test_script_config))
+	@echo "==== Building test_script ($(test_script_config)) ===="
+	@${MAKE} --no-print-directory -C . -f test_script.make config=$(test_script_config)
+endif
+
+test_script2:
+ifneq (,$(test_script2_config))
+	@echo "==== Building test_script2 ($(test_script2_config)) ===="
+	@${MAKE} --no-print-directory -C . -f test_script2.make config=$(test_script2_config)
 endif
 
 clean:
-	@${MAKE} --no-print-directory -C . -f simple_script.make clean
+	@${MAKE} --no-print-directory -C . -f test_script.make clean
+	@${MAKE} --no-print-directory -C . -f test_script2.make clean
 
 help:
 	@echo "Usage: make [config=name] [target]"
@@ -42,6 +51,7 @@ help:
 	@echo "TARGETS:"
 	@echo "   all (default)"
 	@echo "   clean"
-	@echo "   simple_script"
+	@echo "   test_script"
+	@echo "   test_script2"
 	@echo ""
 	@echo "For more information, see http://industriousone.com/premake/quick-start"

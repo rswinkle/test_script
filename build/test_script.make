@@ -13,8 +13,8 @@ endif
 ifeq ($(config),debug)
   RESCOMP = windres
   TARGETDIR = .
-  TARGET = $(TARGETDIR)/simple_script
-  OBJDIR = obj/Debug
+  TARGET = $(TARGETDIR)/test_script
+  OBJDIR = obj/Debug/test_script
   DEFINES += -DDEBUG
   INCLUDES +=
   FORCE_INCLUDE +=
@@ -40,8 +40,8 @@ endif
 ifeq ($(config),release)
   RESCOMP = windres
   TARGETDIR = .
-  TARGET = $(TARGETDIR)/simple_script
-  OBJDIR = obj/Release
+  TARGET = $(TARGETDIR)/test_script
+  OBJDIR = obj/Release/test_script
   DEFINES += -DNDEBUG
   INCLUDES +=
   FORCE_INCLUDE +=
@@ -82,7 +82,7 @@ ifeq (/bin,$(findstring /bin,$(SHELL)))
 endif
 
 $(TARGET): $(GCH) ${CUSTOMFILES} $(OBJECTS) $(LDDEPS) $(RESOURCES)
-	@echo Linking simple_script
+	@echo Linking test_script
 	$(SILENT) $(LINKCMD)
 	$(POSTBUILDCMDS)
 
@@ -103,7 +103,7 @@ else
 endif
 
 clean:
-	@echo Cleaning simple_script
+	@echo Cleaning test_script
 ifeq (posix,$(SHELLTYPE))
 	$(SILENT) rm -f  $(TARGET)
 	$(SILENT) rm -rf $(OBJDIR)

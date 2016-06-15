@@ -1,5 +1,5 @@
 -- A solution contains projects, and defines the available configurations
-solution "Simple_Script"
+solution "Test_Script"
 	configurations { "Debug", "Release" }
 	location "build"
 	kind "ConsoleApp"
@@ -17,7 +17,7 @@ solution "Simple_Script"
 	configuration { "linux", "gmake" }
 		buildoptions { "-std=gnu99", "-pedantic-errors", "-fno-strict-aliasing", "-Wunused-variable", "-Wreturn-type" }
 
-	project "simple_script"
+	project "test_script"
 		files
 		{
 			"main.c",
@@ -28,7 +28,7 @@ solution "Simple_Script"
 		--      libdirs { }
 		--links { } 
 
-	project "simple_script2"
+	project "test_script2"
 		files
 		{
 			"main2.c",
