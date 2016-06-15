@@ -4,29 +4,41 @@ solution "Simple_Script"
 	location "build"
 	kind "ConsoleApp"
 	language "C"
+	targetdir "build"
+	
+	configuration "Debug"
+		defines { "DEBUG" }
+		flags { "Symbols" }
 
-	-- A project defines one build target
+	configuration "Release"
+		defines { "NDEBUG" }
+		flags { "Optimize" }
+
+	configuration { "linux", "gmake" }
+		buildoptions { "-std=gnu99", "-pedantic-errors", "-fno-strict-aliasing", "-Wunused-variable", "-Wreturn-type" }
+
 	project "simple_script"
 		files
 		{
 			"main.c",
 			"lex.yy.c",
-			--"tokens.c",
 			"y.tab.c"
 		}
 		--excludes { }
 		--      libdirs { }
 		--links { } 
-		targetdir "build"
 
-		configuration "Debug"
-			defines { "DEBUG" }
-			flags { "Symbols" }
+	project "simple_script2"
+		files
+		{
+			"main2.c",
+			"lexer.c",
+			"parser.c"
+		}
+		--excludes { }
+		--      libdirs { }
+		--links { } 
 
-		configuration "Release"
-			defines { "NDEBUG" }
-			flags { "Optimize" }
 
-		configuration { "linux", "gmake" }
-			buildoptions { "-std=gnu99", "-pedantic-errors", "-fno-strict-aliasing", "-Wunused-variable", "-Wreturn-type" }
+
 
