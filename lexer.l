@@ -28,7 +28,7 @@ alphanum_ [a-zA-Z0-9_]
 
 
 {digit}*       { return INT_LIT; }
-\n               return NEWLINE; //couldn't get '\n' working in the parser using . rule
+\n|";"         { return SEPARATOR; }
 [ \t]+         ; //eat whitespace
 .              { return yytext[0]; }
 

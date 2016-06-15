@@ -1,16 +1,29 @@
 
 #include "lexer.h"
+#include "linenoise.h"
 
 
 int parse()
 {
-	return parse_statements();
+	parse_statements();
 }
 
 int parse_statements()
 {
-	while () {
-		parse_expr_stmt();
+	char* line = NULL;
+	lexer_state lexer = { NULL, 1, 1 };
+
+	while (lexer.line = linenoise(">>> ")) {
+		lex_token t = get_token(&lexer);
+		while (t.tok.type != END) {
+			if (t.tok.type != SEPARATOR) {
+				parse_expr_stmt();
+			}
+			t = get_token(&lexer);
+		}
+
+
+		free(line);
 	}
 }
 

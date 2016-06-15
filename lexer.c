@@ -4,16 +4,17 @@
 
 #define MAX_TOK_LEN 257
 
-lex_token get_token(char* input)
+lex_token get_token(lexer_state* lex_state)
 {
 	static char token_buf[MAX_TOK_LEN];
 	int i = 0;
 
 	lex_token token = { 0 };
 
-	char* c = input;
-	while (isspace(*c) && *c != '\n')
+	char* c = lex_state.line + lex_state.pos - 1;
+	while (isspace(*c) && *c != '\n') {
 		++c;
+	}
 
 	switch (*c) {
 	case '+': token.tok.type = ADD; break;
@@ -40,6 +41,8 @@ lex_token get_token(char* input)
 			exit(0);
 		}
 	}
+
+	lex_state.pos = c - lex_state.line
 	
 	return tok;
 }

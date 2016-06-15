@@ -28,10 +28,11 @@ typedef struct lex_token
 
 typedef struct lexer_state
 {
-	unsigned cur_line;
-	unsigned cur_pos;
+	char* line;
+	unsigned line_num;
+	unsigned pos;
 }
 
-lex_token get_token();
+lex_token get_token(lexer_state* lex_state);
 
 void print_token(int token);
